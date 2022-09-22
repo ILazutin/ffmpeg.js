@@ -215,7 +215,7 @@ build/ffmpeg-mp4/ffmpeg.bc: $(MP4_SHARED_DEPS)
 	cp ffmpeg ffmpeg.bc
 
 EMCC_COMMON_ARGS = \
-	-O3 \
+	-O0 \
 	--closure 1 \
 	--memory-init-file 0 \
 	-s WASM=0 \
