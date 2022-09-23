@@ -54,8 +54,7 @@ build/opus/configure:
 build/opus/dist/lib/libopus.so: build/opus/configure
 	cd build/opus && \
 	emconfigure ./configure \
-		CFLAGS=-O0 \
-		-g0 \
+		CFLAGS="-O0 -g0" \
 		--prefix="$$(pwd)/dist" \
 		--disable-static \
 		--disable-doc \
