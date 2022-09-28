@@ -54,7 +54,7 @@ build/opus/configure:
 build/opus/dist/lib/libopus.so: build/opus/configure
 	cd build/opus && \
 	emconfigure ./configure \
-		CFLAGS="-O0 -g0" \
+		CFLAGS=-O3 \
 		--prefix="$$(pwd)/dist" \
 		--disable-static \
 		--disable-doc \
@@ -97,7 +97,7 @@ build/lame/dist/lib/libmp3lame.so:
 	git reset --hard && \
 	patch -p2 < ../../lame-fix-ld.patch && \
 	emconfigure ./configure \
-		CFLAGS="-DNDEBUG -O0 -g0" \
+		CFLAGS="-DNDEBUG -O3" \
 		--prefix="$$(pwd)/../dist" \
 		--host=x86-none-linux \
 		--disable-static \
@@ -215,8 +215,7 @@ build/ffmpeg-mp4/ffmpeg.bc: $(MP4_SHARED_DEPS)
 	cp ffmpeg ffmpeg.bc
 
 EMCC_COMMON_ARGS = \
-	-O0 \
-	-g0 \
+	-O3 \
 	--closure 1 \
 	--memory-init-file 0 \
 	-s WASM=0 \
@@ -243,9 +242,9 @@ ffmpeg-worker-webm.js: $(FFMPEG_WEBM_BC) $(PRE_JS) $(POST_JS_WORKER)
 ffmpeg-mp4.js: $(FFMPEG_MP4_BC) $(PRE_JS) $(POST_JS_SYNC)
 	emcc $(FFMPEG_MP4_BC) $(MP4_SHARED_DEPS) \
 		--post-js $(POST_JS_SYNC) \
-		$(EMCC_COMMON_ARGS) -O0 -g0
+		$(EMCC_COMMON_ARGS) -O2
 
 ffmpeg-worker-mp4.js: $(FFMPEG_MP4_BC) $(PRE_JS) $(POST_JS_WORKER)
 	emcc $(FFMPEG_MP4_BC) $(MP4_SHARED_DEPS) \
 		--post-js $(POST_JS_WORKER) \
-		$(EMCC_COMMON_ARGS) -O0 -g0
+		$(EMCC_COMMON_ARGS) -O2
