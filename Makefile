@@ -6,7 +6,7 @@ PRE_JS = build/pre.js
 POST_JS_SYNC = build/post-sync.js
 POST_JS_WORKER = build/post-worker.js
 
-COMMON_FILTERS = aresample scale crop overlay hstack vstack fps amix
+COMMON_FILTERS = aresample scale crop overlay hstack vstack fps amix volume
 COMMON_DEMUXERS = matroska ogg mov mp3 wav
 COMMON_DECODERS = vp8 h264 vorbis opus mp3 aac pcm_s16le
 
